@@ -17,15 +17,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Étape 1 : Vérifier le dépôt
       - name: Checkout the repository
         uses: actions/checkout@v3
 
+      # Étape 2 : Installer JDK 22
       - name: Set up JDK 22
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
           java-version: 22
 
+      # Étape 3 : Mise en cache des dépendances Maven
       - name: Cache Maven dependencies
         uses: actions/cache@v3
         with:
@@ -34,5 +37,12 @@ jobs:
           restore-keys: |
             maven-${{ runner.os }}
 
+      # Étape 4 : Vérifier la version de Maven et Java
+      - name: Verify Java and Maven versions
+        run: |
+          java -version
+          mvn -version
+
+      # Étape 5 : Exécuter les tests Maven
       - name: Run tests with Maven
         run: mvn -B test --file pom.xml
