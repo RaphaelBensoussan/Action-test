@@ -47,10 +47,10 @@ jobs:
       - name: Run unit tests with Maven
         run: mvn -B test --file pom.xml
 
-      # Étape 6 : Lancer les tests E2E avec JUnit
-      - name: Run E2E tests with JUnit
+      # Étape 6 : Lancer les tests avec JUnit (classe spécifique TodoListApplicationTest)
+      - name: Run tests with Maven (JUnit)
         run: |
-          mvn clean test -Dtest=MyE2ETests
+          mvn clean test -Dtest=com.sio.javatd5sio2.TodoListApplicationTest
 
       # Étape 7 : Collecter les résultats des tests
       - name: Upload test results
