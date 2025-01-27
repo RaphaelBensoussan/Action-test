@@ -38,3 +38,8 @@ jobs:
       # Étape 4 : Exécuter les tests Maven
       - name: Run tests with Maven
         run: mvn -B test --file pom.xml
+
+      # Étape 5 : Afficher les tests effectués
+      - name: Display test results
+        run: mvn -B test --file pom.xml --fail-never
+
