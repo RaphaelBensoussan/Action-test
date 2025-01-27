@@ -43,18 +43,6 @@ jobs:
           java -version
           mvn -version
 
-      # Étape 5 : Exécuter les tests unitaires avec Maven
-      - name: Run unit tests with Maven
+      # Étape 5 : Exécuter les tests Maven
+      - name: Run tests with Maven
         run: mvn -B test --file pom.xml
-
-      # Étape 6 : Lancer les tests avec JUnit (classe spécifique TodoListApplicationTest)
-      - name: Run tests with Maven (JUnit)
-        run: |
-          mvn clean test -Dtest=com.sio.javatd5sio2.TodoListApplicationTest
-
-      # Étape 7 : Collecter les résultats des tests
-      - name: Upload test results
-        uses: actions/upload-artifact@v3
-        with:
-          name: test-results
-          path: target/test-classes  # ou le chemin des résultats de tests JUnit
