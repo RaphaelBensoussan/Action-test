@@ -20,12 +20,12 @@
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
-            <version>${java.version}.0.1</version>
+            <version>22.0.1</version> <!-- Ajusté à la version de Java 22 -->
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
-            <version>${java.version}.0.1</version>
+            <version>22.0.1</version> <!-- Ajusté à la version de Java 22 -->
         </dependency>
 
         <!-- JUnit Dependencies -->
@@ -42,7 +42,7 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- TestFX -->
+        <!-- TestFX Dependencies -->
         <dependency>
             <groupId>org.testfx</groupId>
             <artifactId>testfx-core</artifactId>
