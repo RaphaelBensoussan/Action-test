@@ -5,41 +5,42 @@ on:
     branches:
       - main
       - develop
+      - correction # Ajout de la branche "correction"
   pull_request:
     branches:
       - main
       - develop
+      - correction # Ajout de la branche "correction"
 
 jobs:
   run_tests:
     runs-on: ubuntu-latest
 
     steps:
-      # Étape 1 : Vérifier le dépôt
+      # Étape 1 : Vérification du dépôt
       - name: Checkout the repository
         uses: actions/checkout@v3
 
-      # Étape 2 : Installer JDK 17 (version plus récente et LTS)
+      # Étape 2 : Installation de JDK 17 (LTS)
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
-          distribution: 'temurin' # Utilisation de Temurin (OpenJDK)
+          distribution: 'temurin' # Temurin est une distribution OpenJDK
           java-version: 17
 
       # Étape 3 : Mise en cache des dépendances Maven
       - name: Cache Maven dependencies
         uses: actions/cache@v3
         with:
-          path: ~/.m2/repository
-          key: maven-${{ runner.os }}-${{ hashFiles('**/pom.xml') }}
+          path: ~/.m2/repository # Répertoire des dépendances Maven
+          key: maven-${{ runner.os }}-${{ hashFiles('**/pom.xml') }} # Clé basée sur le contenu de "pom.xml"
           restore-keys: |
-            maven-${{ runner.os }}
+            maven-${{ runner.os }} # Clés de restauration pour réutiliser un cache existant
 
       # Étape 4 : Exécuter les tests Maven
       - name: Run tests with Maven
-        run: mvn -B test --file pom.xml
+        run: mvn -B test --file pom.xml # Lancement des tests unitaires
 
-      # Étape 5 : Afficher les tests effectués
+      # Étape 5 : Afficher les résultats des tests
       - name: Display test results
         run: mvn -B test --file pom.xml --fail-never
-
